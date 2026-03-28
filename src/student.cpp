@@ -28,6 +28,6 @@ void student::display()
 	std::cout << Social_Media_Hours << std::endl;
 	std::cout << Physical_Activity << std::endl;
 	std::cout << Stress_Level << std::endl;
-	std::cout << Department << std::endl;
+	std::cout << Depression << std::endl;
 
 }

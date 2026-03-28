@@ -7,7 +7,7 @@ int main()
 {
 	std::vector<student*> students;
 	std::ifstream file;
-	file.open("src/student_lifestyle_100k.csv");
+	file.open("../../../../src/student_lifestyle_100k.csv");
 	std::string line = "";
 	if (!file.is_open()) 
 	{
@@ -16,55 +16,60 @@ int main()
 
 	}
 	getline(file, line);
-	getline(file, line);
-	
-	std::string id = "", age = "", gender = "", department = "", gpa = "", sleep = "", study = "", social = "", physical = "", stress = "";
-	int location = 0;
-		
-	location = line.find(',');
-	id = line.substr(0, location); //remember to add '0000'
-	line = line.substr(location + 1, line.length());
+	while (getline(file, line)) {
 
-	location = line.find(',');
-	age = line.substr(0, location); 
-	line = line.substr(location + 1, line.length());
+		std::string id = "", age = "", gender = "", department = "", gpa = "", sleep = "", study = "", social = "", physical = "", stress = "";
+		int location = 0;
 
-	location = line.find(',');
-	gender = line.substr(0, location);
-	line = line.substr(location + 1, line.length());
+		location = line.find(',');
+		id = line.substr(0, location); //remember to add '0000'
+		line = line.substr(location + 1, line.length());
 
-	location = line.find(',');
-	department = line.substr(0, location);
-	line = line.substr(location + 1, line.length());
+		location = line.find(',');
+		age = line.substr(0, location);
+		line = line.substr(location + 1, line.length());
 
-	location = line.find(',');
-	gpa = line.substr(0, location);
-	line = line.substr(location + 1, line.length());
+		location = line.find(',');
+		gender = line.substr(0, location);
+		line = line.substr(location + 1, line.length());
 
-	location = line.find(',');
-	sleep = line.substr(0, location);
-	line = line.substr(location + 1, line.length());
+		location = line.find(',');
+		department = line.substr(0, location);
+		line = line.substr(location + 1, line.length());
 
-	location = line.find(',');
-	study = line.substr(0, location);
-	line = line.substr(location + 1, line.length());
+		location = line.find(',');
+		gpa = line.substr(0, location);
+		line = line.substr(location + 1, line.length());
 
-	location = line.find(',');
-	social = line.substr(0, location);
-	line = line.substr(location + 1, line.length());
+		location = line.find(',');
+		sleep = line.substr(0, location);
+		line = line.substr(location + 1, line.length());
 
-	location = line.find(',');
-	physical = line.substr(0, location);
-	line = line.substr(location + 1, line.length());
+		location = line.find(',');
+		study = line.substr(0, location);
+		line = line.substr(location + 1, line.length());
 
-	location = line.find(',');
-	stress = line.substr(0, location);
-	line = line.substr(location + 1, line.length());
+		location = line.find(',');
+		social = line.substr(0, location);
+		line = line.substr(location + 1, line.length());
+
+		location = line.find(',');
+		physical = line.substr(0, location);
+		line = line.substr(location + 1, line.length());
+
+		location = line.find(',');
+		stress = line.substr(0, location);
+		line = line.substr(location + 1, line.length());
+
+		student* s = new student(std::stoi(id), std::stoi(age), gender, department, std::stof(gpa), std::stof(sleep), std::stof(study), std::stof(social), std::stoi(physical), std::stoi(stress), line == "True");
+		students.push_back(s);
+	}
+
+
+	students[100]->display();
 
 
 
-	student* s = new student(std::stoi(id), std::stoi(age), gender, department, std::stof(gpa), std::stof(sleep), std::stof(study), std::stof(social), std::stoi(physical), std::stoi(stress), line == "True");
-	s->display();
 	
 	//sf::RenderWindow window( sf::VideoMode( { 1200, 800 } ), "Main" );
 	//sf::CircleShape shape( 100.f );
