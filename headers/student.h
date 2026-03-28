@@ -4,6 +4,7 @@
 
 class student
 {
+public:
 	int Student_ID;
 	int Age;
 	std::string Gender;
@@ -15,7 +16,7 @@ class student
 	int Physical_Activity;
 	int Stress_Level;
 	bool Depression;
-public:
+
 	student(int id, int age, std::string gender, std::string department,
 		float GPA, float sleep, float study, float social, int physical, int stress, bool depression);
 
