@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <fstream>
 #include <vector>
+#include <algorithm>
 #include "../headers/student.h"
 
 void merge(std::vector<student*>& arr, int left, int mid, int right) {
@@ -8,7 +9,7 @@ void merge(std::vector<student*>& arr, int left, int mid, int right) {
 	int j = mid + 1;
 	std::vector<student*> temp;
 	while (i <= mid && j <= right) {
-		if (arr[i]->GPA < arr[j]->GPA) {
+		if (arr[i]->Stress_Level < arr[j]->Stress_Level) {
 			temp.push_back(arr[i]);
 			i++;
 		}
@@ -38,6 +39,28 @@ void mergeSort(std::vector<student*>& arr, int left, int right) {
 		merge(arr, left, mid, right);
 	}
 }
+
+int partition(std::vector<student*>& arr, int low, int high) {
+	student* pivot = arr[high];
+	int i = low - 1;
+	for (int j = low; j < high; j++) {
+		if (arr[j]->Stress_Level < pivot->Stress_Level) {
+			i++;
+			std::swap(arr[i], arr[j]);
+		}
+	}
+	std::swap(arr[i + 1], arr[high]);
+	return i + 1;
+}
+
+void quickSort(std::vector<student*>& arr, int low, int high) {
+	if (low < high) {
+		int pi = partition(arr, low, high);
+		quickSort(arr, low, pi - 1);
+		quickSort(arr, pi + 1, high);
+	}
+}
+
 
 
 
@@ -108,7 +131,7 @@ int main()
 
 	std::vector<student*> testVec;
 
-	for (int i = 1; i < 10; i++) {
+	for (int i = 100; i < 200; i++) {
 		testVec.push_back(students[i]);
 	}
 
@@ -117,7 +140,7 @@ int main()
 		if (s) s->display();
 	}
 	if (!testVec.empty()) {
-		mergeSort(testVec, 0, static_cast<int>(testVec.size()) - 1);
+		quickSort(testVec, 0, static_cast<int>(testVec.size()) - 1);
 	}
 	std::cout << "After sorting:\n";
 	for (auto s : testVec) {
