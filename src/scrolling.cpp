@@ -1,4 +1,5 @@
 #include "../headers/scrolling.h"
+#include <algorithm>
 
 scrolling::scrolling(sf::FloatRect bounds, float rowHeight, sf::Font& font, unsigned int fontSize)
 	: bounds(bounds), rowHeight(rowHeight), font(font), fontSize(fontSize), scrollOffset(0.0f)
