@@ -2,7 +2,7 @@
 #include <string>
 #include <iostream>
 
-class student
+struct student
 {
 public:
 	int Student_ID;
