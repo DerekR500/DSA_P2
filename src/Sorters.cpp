@@ -4,15 +4,6 @@
 #include "../headers/Sorters.h"
 #include "../headers/student.h"
 
-enum SortCriterion {
-	BY_GPA,
-	BY_STRESS,
-	BY_STUDY_HOURS,
-	BY_SLEEP_DURATION,
-	BY_SOCIAL_MEDIA,
-	BY_PHYSICAL_ACTIVITY,
-	BY_AGE
-};
 
 float getValue(student* s, SortCriterion criterion) {
 	switch (criterion) {
