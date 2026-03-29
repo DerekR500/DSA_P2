@@ -67,6 +67,14 @@ void mergeSort(std::vector<student*>& arr, int left, int right, SortCriterion cr
 }
 
 int partition(std::vector<student*>& arr, int low, int high, SortCriterion criterion) {
+	int mid = low + (high - low) / 2;
+	if (getValue(arr[mid], criterion) < getValue(arr[low], criterion))
+		std::swap(arr[mid], arr[low]);
+	if (getValue(arr[high], criterion) < getValue(arr[low], criterion))
+		std::swap(arr[high], arr[low]);
+	if (getValue(arr[mid], criterion) < getValue(arr[high], criterion))
+		std::swap(arr[mid], arr[high]);
+
 	student* pivot = arr[high];
 	float pivotValue = getValue(pivot, criterion);
 	int i = low - 1;
@@ -83,9 +91,15 @@ int partition(std::vector<student*>& arr, int low, int high, SortCriterion crite
 }
 
 void quickSort(std::vector<student*>& arr, int low, int high, SortCriterion criterion) {
-	if (low < high) {
+	while (low < high) {
 		int pi = partition(arr, low, high, criterion);
-		quickSort(arr, low, pi - 1, criterion);
-		quickSort(arr, pi + 1, high, criterion);
+	
+		if (pi - low < high - pi) {
+			quickSort(arr, low, pi - 1, criterion);
+			low = pi + 1;
+		} else {
+			quickSort(arr, pi + 1, high, criterion);
+			high = pi - 1;
+		}
 	}
 }
