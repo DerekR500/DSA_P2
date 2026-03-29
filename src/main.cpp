@@ -2,6 +2,7 @@
 #include <fstream>
 #include <vector>
 #include "../headers/student.h"
+#include "../headers/scrolling.h"
 
 int main()
 {
@@ -110,9 +111,17 @@ int main()
 	depression.setPosition({ 73.0f, 505 });
 	depression.setFillColor(sf::Color::Black);
 
+	sf::Text yesText(font);
+	yesText.setCharacterSize(24);
+	yesText.setString("Yes");
+	yesText.setFillColor(sf::Color::Black);
+
 	sf::RectangleShape yesButton({ 150, 90});
 	yesButton.setPosition({ 50.0f, 600.0f });
 	yesButton.setFillColor(sf::Color::Green);
+
+	sf::FloatRect textBounds = yesText.getLocalBounds();
+	sf::FloatRect buttonBounds = yesButton.getGlobalBounds();
 
 	sf::RectangleShape noButton({ 150, 90 });
 	noButton.setPosition({ 225.0f, 600.0f });
