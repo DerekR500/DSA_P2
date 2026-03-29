@@ -29,6 +29,6 @@ class scrolling
 public:
 	scrolling(sf::FloatRect bounds, float rowH, sf::Font& font, unsigned int fontS = 16);
 	void setData(std::vector<student>* students);
-	void handleEvent(sf::Event& ev, sf::RenderWindow& window);
+	void handleEvent(const sf::Event& ev, sf::RenderWindow& window);
 	void draw(sf::RenderWindow& window);
 };

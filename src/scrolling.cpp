@@ -113,7 +113,7 @@ void scrolling::setData(std::vector<student>* students)
 	scrollOffset = 0.0f;
 }
 
-void scrolling::handleEvent(sf::Event& ev, sf::RenderWindow& window)
+void scrolling::handleEvent(const sf::Event& ev, sf::RenderWindow& window)
 {
 	if (auto* scroll = ev.getIf<sf::Event::MouseWheelScrolled>())
 	{

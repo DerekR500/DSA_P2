@@ -10,7 +10,7 @@
 
 int main()
 {
-	std::vector<student>* students;
+	std::vector<student> students;
 
 	std::ifstream file;
 	file.open("../../../../src/student_lifestyle_100k.csv");
@@ -67,7 +67,7 @@ int main()
 		line = line.substr(location + 1, line.length());
 
 		student s(std::stoi(id), std::stoi(age), gender, department, std::stof(gpa), std::stof(sleep), std::stof(study), std::stof(social), std::stoi(physical), std::stoi(stress), line == "True");
-		students->push_back(s);
+		students.push_back(s);
 
 	}
 
@@ -81,7 +81,7 @@ int main()
 
 	sf::FloatRect tableBounds({ 410.f, 50.f }, { 780.f, 740.f });
 	scrolling table(tableBounds, 28.f, font, 14);
-	table.setData(students);
+	table.setData(&students);
 
 
 	sf::Text ufid(font);
@@ -141,6 +141,7 @@ int main()
 		{
 			if (event->is<sf::Event::Closed>())
 				window.close();
+			table.handleEvent(*event, window);
 		}
 		window.clear(sf::Color::White);
 		window.draw(ufid);
@@ -149,7 +150,9 @@ int main()
 		window.draw(depression);
 		window.draw(yesButton);
 		window.draw(noButton);
+		table.draw(window);
 		window.display();
+
 	}
 
 	file.close();
