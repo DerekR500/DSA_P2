@@ -4,6 +4,7 @@
 
 struct student
 {
+public:
 	int Student_ID;
 	int Age;
 	std::string Gender;

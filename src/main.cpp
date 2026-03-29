@@ -1,7 +1,20 @@
 #include <SFML/Graphics.hpp>
 #include <fstream>
 #include <vector>
+#include <algorithm>
 #include "../headers/student.h"
+#include "../headers/Sorters.h"
+
+
+
+int main()
+{
+	std::vector<student*> students;
+
+	std::ifstream file;
+	file.open("../../../../src/student_lifestyle_100k.csv");
+	std::string line = "";
+	if (!file.is_open())
 #include "../headers/scrolling.h"
 
 int main()
@@ -143,6 +156,82 @@ int main()
 		window.draw(noButton);
 		window.display();
 	}
+	getline(file, line);
+	while (getline(file, line)) {
+
+		std::string id = "", age = "", gender = "", department = "", gpa = "", sleep = "", study = "", social = "", physical = "", stress = "";
+		int location = 0;
+
+		location = line.find(',');
+		id = line.substr(0, location); //remember to add '0000'
+		line = line.substr(location + 1, line.length());
+
+		location = line.find(',');
+		age = line.substr(0, location);
+		line = line.substr(location + 1, line.length());
+
+		location = line.find(',');
+		gender = line.substr(0, location);
+		line = line.substr(location + 1, line.length());
+
+		location = line.find(',');
+		department = line.substr(0, location);
+		line = line.substr(location + 1, line.length());
+
+		location = line.find(',');
+		gpa = line.substr(0, location);
+		line = line.substr(location + 1, line.length());
+
+		location = line.find(',');
+		sleep = line.substr(0, location);
+		line = line.substr(location + 1, line.length());
+
+		location = line.find(',');
+		study = line.substr(0, location);
+		line = line.substr(location + 1, line.length());
+
+		location = line.find(',');
+		social = line.substr(0, location);
+		line = line.substr(location + 1, line.length());
+
+		location = line.find(',');
+		physical = line.substr(0, location);
+		line = line.substr(location + 1, line.length());
+
+		location = line.find(',');
+		stress = line.substr(0, location);
+		line = line.substr(location + 1, line.length());
+
+		student* s = new student(std::stoi(id), std::stoi(age), gender, department, std::stof(gpa), std::stof(sleep), std::stof(study), std::stof(social), std::stoi(physical), std::stoi(stress), line == "True");
+		students.push_back(s);
+
+	}
+
+
+	//Loop for testing sorting algorithms
+	std::vector<student*> testVec;
+
+	for (int i = 100; i < 200; i++) {
+		testVec.push_back(students[i]);
+	}
+
+	printf("Before sorting:\n");
+	for (auto s : testVec) {
+		if (s) s->display();
+	}
+	if (!testVec.empty()) {
+		quickSort(testVec, 0, static_cast<int>(testVec.size()) - 1);
+	}
+	std::cout << "After sorting:\n";
+	for (auto s : testVec) {
+		if (s) s->display();
+	}
+
+	
+	//sf::RenderWindow window( sf::VideoMode( { 1200, 800 } ), "Main" );
+	//sf::CircleShape shape( 100.f );
+	//shape.setFillColor( sf::Color::Green );
+	//
 
 	//file.close();
 	return 0;
