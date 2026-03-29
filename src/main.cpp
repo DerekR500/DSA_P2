@@ -3,8 +3,7 @@
 #include <vector>
 #include <algorithm>
 #include "../headers/student.h"
-#include "../src/Sorters.cpp"
-
+#include "../headers/Sorters.h"
 
 
 
@@ -72,6 +71,8 @@ int main()
 
 	}
 
+
+	//Loop for testing sorting algorithms
 	std::vector<student*> testVec;
 
 	for (int i = 100; i < 200; i++) {
